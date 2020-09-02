@@ -1,10 +1,18 @@
+const path = require('path')
 const express = require('express')
 const app = express()
-//La aplicacion escuchara en el puerto 3000
-server = app.listen(3000)
-const io = require("socket.io")(server)
+const socketIO = require('socket.io')
 
-app.use(express.static("client"));
+app.set('port',process.env.PORT || 3000)
+
+//Permitir que express tenga acceso a archivos del cliente
+app.use(express.static(path.join(__dirname, '..','client')))
+
+const server=app.listen(app.get('port'),()=>{
+    console.log('Servidor http://localhost:3000/')
+})
+
+const io=socketIO.listen(server)
 
 
 //para permitir la conexion de cualquier usuario

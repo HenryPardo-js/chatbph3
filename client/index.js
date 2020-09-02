@@ -1,7 +1,8 @@
 
 $(function(){
     //make connection
-    var socket = io.connect('http://localhost:3000')
+    //io("http://localhost:3000/")
+    let socket=io()
 
     //buttons and inputs
     var message = $("#message")
